@@ -1,0 +1,10 @@
+server:
+  port: 8001
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 118.190.97.125:8848
+      config:
+        server-addr: 118.190.97.125:8848

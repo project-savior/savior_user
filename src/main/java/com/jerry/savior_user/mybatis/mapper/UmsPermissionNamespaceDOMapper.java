@@ -1,7 +1,9 @@
 package com.jerry.savior_user.mybatis.mapper;
 
 import com.jerry.savior_user.mybatis.DO.UmsPermissionNamespaceDO;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UmsPermissionNamespaceDOMapper {
     int deleteByPrimaryKey(Long id);
 

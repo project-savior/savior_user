@@ -1,501 +1,314 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jerry.savior_user.mybatis.mapper.UmsUserDOMapper">
-  <resultMap id="BaseResultMap" type="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="name_verified" jdbcType="INTEGER" property="nameVerified" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
-    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
-    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-    <result column="gender" jdbcType="INTEGER" property="gender" />
-    <result column="birthday" jdbcType="DATE" property="birthday" />
-    <result column="city" jdbcType="VARCHAR" property="city" />
-    <result column="motto" jdbcType="VARCHAR" property="motto" />
-    <result column="exp" jdbcType="INTEGER" property="exp" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, password, nickname, phone, status, name_verified, email, real_name, id_card, 
-    student_id, avatar, gender, birthday, city, motto, exp, create_time, update_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ums_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from ums_user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    insert into ums_user (id, password, nickname, 
-      phone, status, name_verified, 
-      email, real_name, id_card, 
-      student_id, avatar, gender, 
-      birthday, city, motto, 
-      exp, create_time, update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{nameVerified,jdbcType=INTEGER}, 
-      #{email,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
-      #{studentId,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
-      #{birthday,jdbcType=DATE}, #{city,jdbcType=VARCHAR}, #{motto,jdbcType=VARCHAR}, 
-      #{exp,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    insert into ums_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="nickname != null">
-        nickname,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="nameVerified != null">
-        name_verified,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="idCard != null">
-        id_card,
-      </if>
-      <if test="studentId != null">
-        student_id,
-      </if>
-      <if test="avatar != null">
-        avatar,
-      </if>
-      <if test="gender != null">
-        gender,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="city != null">
-        city,
-      </if>
-      <if test="motto != null">
-        motto,
-      </if>
-      <if test="exp != null">
-        exp,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="nickname != null">
-        #{nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="nameVerified != null">
-        #{nameVerified,jdbcType=INTEGER},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="idCard != null">
-        #{idCard,jdbcType=VARCHAR},
-      </if>
-      <if test="studentId != null">
-        #{studentId,jdbcType=VARCHAR},
-      </if>
-      <if test="avatar != null">
-        #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        #{gender,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=DATE},
-      </if>
-      <if test="city != null">
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="motto != null">
-        #{motto,jdbcType=VARCHAR},
-      </if>
-      <if test="exp != null">
-        #{exp,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    update ums_user
-    <set>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="nickname != null">
-        nickname = #{nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="nameVerified != null">
-        name_verified = #{nameVerified,jdbcType=INTEGER},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="idCard != null">
-        id_card = #{idCard,jdbcType=VARCHAR},
-      </if>
-      <if test="studentId != null">
-        student_id = #{studentId,jdbcType=VARCHAR},
-      </if>
-      <if test="avatar != null">
-        avatar = #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=DATE},
-      </if>
-      <if test="city != null">
-        city = #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="motto != null">
-        motto = #{motto,jdbcType=VARCHAR},
-      </if>
-      <if test="exp != null">
-        exp = #{exp,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    update ums_user
-    set password = #{password,jdbcType=VARCHAR},
-      nickname = #{nickname,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      name_verified = #{nameVerified,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      id_card = #{idCard,jdbcType=VARCHAR},
-      student_id = #{studentId,jdbcType=VARCHAR},
-      avatar = #{avatar,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=INTEGER},
-      birthday = #{birthday,jdbcType=DATE},
-      city = #{city,jdbcType=VARCHAR},
-      motto = #{motto,jdbcType=VARCHAR},
-      exp = #{exp,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="name_verified" jdbcType="INTEGER" property="nameVerified" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
-    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
-    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-    <result column="gender" jdbcType="INTEGER" property="gender" />
-    <result column="birthday" jdbcType="DATE" property="birthday" />
-    <result column="city" jdbcType="VARCHAR" property="city" />
-    <result column="motto" jdbcType="VARCHAR" property="motto" />
-    <result column="exp" jdbcType="INTEGER" property="exp" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, username, password, nickname, phone, status, name_verified, email, real_name, 
+    <resultMap id="BaseResultMap" type="com.jerry.savior_user.mybatis.DO.UmsUserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="name_verified" jdbcType="INTEGER" property="nameVerified"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="student_id" jdbcType="VARCHAR" property="studentId"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="motto" jdbcType="VARCHAR" property="motto"/>
+        <result column="exp" jdbcType="INTEGER" property="exp"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        `id`, `password`, nickname, phone, `status`, name_verified, email, real_name,
     id_card, student_id, avatar, gender, birthday, city, motto, exp, create_time, update_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ums_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from ums_user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    insert into ums_user (id, username, password, 
-      nickname, phone, status, 
-      name_verified, email, real_name, 
-      id_card, student_id, avatar, 
-      gender, birthday, city, 
-      motto, exp, create_time, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{nameVerified,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{idCard,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{city,jdbcType=VARCHAR}, 
-      #{motto,jdbcType=VARCHAR}, #{exp,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    insert into ums_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="nickname != null">
-        nickname,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="nameVerified != null">
-        name_verified,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="idCard != null">
-        id_card,
-      </if>
-      <if test="studentId != null">
-        student_id,
-      </if>
-      <if test="avatar != null">
-        avatar,
-      </if>
-      <if test="gender != null">
-        gender,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="city != null">
-        city,
-      </if>
-      <if test="motto != null">
-        motto,
-      </if>
-      <if test="exp != null">
-        exp,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="nickname != null">
-        #{nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="nameVerified != null">
-        #{nameVerified,jdbcType=INTEGER},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="idCard != null">
-        #{idCard,jdbcType=VARCHAR},
-      </if>
-      <if test="studentId != null">
-        #{studentId,jdbcType=VARCHAR},
-      </if>
-      <if test="avatar != null">
-        #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        #{gender,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=DATE},
-      </if>
-      <if test="city != null">
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="motto != null">
-        #{motto,jdbcType=VARCHAR},
-      </if>
-      <if test="exp != null">
-        #{exp,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    update ums_user
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="nickname != null">
-        nickname = #{nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="nameVerified != null">
-        name_verified = #{nameVerified,jdbcType=INTEGER},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="idCard != null">
-        id_card = #{idCard,jdbcType=VARCHAR},
-      </if>
-      <if test="studentId != null">
-        student_id = #{studentId,jdbcType=VARCHAR},
-      </if>
-      <if test="avatar != null">
-        avatar = #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=DATE},
-      </if>
-      <if test="city != null">
-        city = #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="motto != null">
-        motto = #{motto,jdbcType=VARCHAR},
-      </if>
-      <if test="exp != null">
-        exp = #{exp,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
-    update ums_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      nickname = #{nickname,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      name_verified = #{nameVerified,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      id_card = #{idCard,jdbcType=VARCHAR},
-      student_id = #{studentId,jdbcType=VARCHAR},
-      avatar = #{avatar,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=INTEGER},
-      birthday = #{birthday,jdbcType=DATE},
-      city = #{city,jdbcType=VARCHAR},
-      motto = #{motto,jdbcType=VARCHAR},
-      exp = #{exp,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectBySelective" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_user
+        <where>
+            <if test="selective.id!=null">
+                id=#{selective.id}
+            </if>
+            <if test="selective.password!=null">
+                and `password`=#{selective.password}
+            </if>
+            <if test="selective.nickname!=null">
+                and `nickname`=#{selective.nickname}
+            </if>
+            <if test="selective.phone!=null">
+                and phone=#{selective.phone}
+            </if>
+            <if test="selective.status!=null">
+                and `status`=#{selective.status}
+            </if>
+            <if test="selective.nameVerified!=null">
+                and name_verified=#{selective.nameVerified}
+            </if>
+            <if test="selective.email!=null">
+                and email=#{selective.email}
+            </if>
+            <if test="selective.realName!=null">
+                and real_name=#{selective.realName}
+            </if>
+            <if test="selective.idCard!=null">
+                and id_card=#{selective.idCard}
+            </if>
+            <if test="selective.studentId!=null">
+                and student_id=#{selective.studentId}
+            </if>
+            <if test="selective.avatar!=null">
+                and avatar=#{selective.avatar}
+            </if>
+            <if test="selective.gender!=null">
+                and gender=#{selective.gender}
+            </if>
+            <if test="selective.birthday!=null">
+                and birthday=#{selective.birthday}
+            </if>
+            <if test="selective.city!=null">
+                and city=#{selective.city}
+            </if>
+            <if test="selective.motto!=null">
+                and city=#{selective.motto}
+            </if>
+            <if test="selective.exp!=null">
+                and exp=#{selective.exp}
+            </if>
+            <if test="selective.createTime!=null">
+                and create_time=#{selective.createTime}
+            </if>
+            <if test="selective.updateTime!=null">
+                and update_time=#{selective.updateTime}
+            </if>
+        </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from ums_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
+        insert into ums_user (id, password,
+                              nickname, phone, status,
+                              name_verified, email, real_name,
+                              id_card, student_id, avatar,
+                              gender, birthday, city,
+                              motto, exp, create_time,
+                              update_time)
+        values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+                #{nameVerified,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+                #{idCard,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
+                #{gender,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{city,jdbcType=VARCHAR},
+                #{motto,jdbcType=VARCHAR}, #{exp,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective"
+            parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="nameVerified != null">
+                name_verified,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="studentId != null">
+                student_id,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="motto != null">
+                motto,
+            </if>
+            <if test="exp != null">
+                exp,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="nameVerified != null">
+                #{nameVerified,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="studentId != null">
+                #{studentId,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=DATE},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="motto != null">
+                #{motto,jdbcType=VARCHAR},
+            </if>
+            <if test="exp != null">
+                #{exp,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
+        update ums_user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="nameVerified != null">
+                name_verified = #{nameVerified,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="studentId != null">
+                student_id = #{studentId,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="motto != null">
+                motto = #{motto,jdbcType=VARCHAR},
+            </if>
+            <if test="exp != null">
+                exp = #{exp,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
+        update ums_user
+        set password      = #{password,jdbcType=VARCHAR},
+            nickname      = #{nickname,jdbcType=VARCHAR},
+            phone         = #{phone,jdbcType=VARCHAR},
+            status        = #{status,jdbcType=INTEGER},
+            name_verified = #{nameVerified,jdbcType=INTEGER},
+            email         = #{email,jdbcType=VARCHAR},
+            real_name     = #{realName,jdbcType=VARCHAR},
+            id_card       = #{idCard,jdbcType=VARCHAR},
+            student_id    = #{studentId,jdbcType=VARCHAR},
+            avatar        = #{avatar,jdbcType=VARCHAR},
+            gender        = #{gender,jdbcType=INTEGER},
+            birthday      = #{birthday,jdbcType=DATE},
+            city          = #{city,jdbcType=VARCHAR},
+            motto         = #{motto,jdbcType=VARCHAR},
+            exp           = #{exp,jdbcType=INTEGER},
+            create_time   = #{createTime,jdbcType=TIMESTAMP},
+            update_time   = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

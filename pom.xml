@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.jerry</groupId>
-        <artifactId>savior</artifactId>
+        <artifactId>savior_dependency_version_control</artifactId>
         <version>1.0-RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
@@ -16,8 +16,16 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <savior-web.version>1.0.RELEASE</savior-web.version>
     </properties>
     <dependencies>
+        <!--savior web-->
+        <dependency>
+            <groupId>com.jerry</groupId>
+            <artifactId>savior_web</artifactId>
+            <version>${savior-web.version}</version>
+        </dependency>
+        <!--mysql module-->
         <dependency>
             <groupId>com.jerry</groupId>
             <artifactId>savior_mysql</artifactId>

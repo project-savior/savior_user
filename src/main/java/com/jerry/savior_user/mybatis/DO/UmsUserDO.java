@@ -1,5 +1,8 @@
 package com.jerry.savior_user.mybatis.DO;
 
+import cn.hutool.core.date.DateUtil;
+import com.jerry.savior_user.constants.UserConstants;
+
 import java.util.Date;
 
 public class UmsUserDO {
@@ -181,5 +184,28 @@ public class UmsUserDO {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public static UmsUserDO newUser(String phone){
+        UmsUserDO userDO=new UmsUserDO();
+        userDO.setId(null);
+        userDO.setPassword(null);
+        userDO.setNickname(String.format("u_%s", phone));
+        userDO.setPhone(phone);
+        userDO.setStatus(UserConstants.UserStatusConstant.NORMAL);
+        userDO.setNameVerified(UserConstants.UserNameVerifiedConstants.NOT_VERIFY);
+        userDO.setEmail(null);
+        userDO.setRealName(null);
+        userDO.setIdCard(null);
+        userDO.setStudentId(null);
+        userDO.setAvatar(null);
+        userDO.setGender(UserConstants.UserGenderConstant.MALE);
+        userDO.setBirthday(null);
+        userDO.setCity(null);
+        userDO.setMotto(null);
+        userDO.setExp(0);
+        userDO.setCreateTime(DateUtil.date());
+        userDO.setUpdateTime(null);
+        return userDO;
     }
 }

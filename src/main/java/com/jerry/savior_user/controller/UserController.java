@@ -1,30 +1,31 @@
 package com.jerry.savior_user.controller;
 
-import com.jerry.savior_common.util.ObjectMapperHelper;
-import com.jerry.savior_user.pojo.VO.UserVO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.jerry.savior_common.constants.PatternConstants;
+import com.jerry.savior_user.pojo.BO.UserBO;
+import com.jerry.savior_user.service.IUserService;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Pattern;
 
 /**
  * @author 22454
  */
+@Validated
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private final IUserService userService;
 
-    private final ObjectMapperHelper objectMapperHelper;
-
-    public UserController(ObjectMapperHelper objectMapperHelper) {
-        this.objectMapperHelper = objectMapperHelper;
+    public UserController(IUserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/getUserInfoByPhone")
-    public UserVO getUserInfoByPhone(@RequestParam("phone") String phone) {
-        UserVO userVO = new UserVO();
-        userVO.setName("yzl");
-        return userVO;
+    @GetMapping("/info-by-phone")
+    public UserBO getUserInfoByPhone(@RequestParam("phone")
+                                     @Pattern(regexp = PatternConstants.TELEPHONE_REGEXP, message = "手机号码格式错误")
+                                             String phone) {
+        return userService.getUserInfoByPhone(phone);
     }
 
 

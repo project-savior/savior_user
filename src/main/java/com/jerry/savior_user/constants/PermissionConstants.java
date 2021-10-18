@@ -4,6 +4,8 @@ package com.jerry.savior_user.constants;
  * @author 22454
  */
 public interface PermissionConstants {
+
+
     interface PermissionStatusConstants {
         /**
          * 正常

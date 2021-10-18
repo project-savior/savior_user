@@ -233,9 +233,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.jerry.savior_user.mybatis.DO.UmsUserDO">
         update ums_user
         <set>
-            <if test="username != null">
-                username = #{username,jdbcType=VARCHAR},
-            </if>
             <if test="password != null">
                 password = #{password,jdbcType=VARCHAR},
             </if>
